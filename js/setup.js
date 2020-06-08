@@ -34,7 +34,7 @@ var addElement = function (mass) {
   similarListElement.appendChild(fragment);
 };
 
-var massName = [
+var names = [
   'Иван',
   'Хуан Себастьян',
   'Мария',
@@ -45,7 +45,7 @@ var massName = [
   'Вашингтон'
 ];
 
-var massSurname = [
+var surnames = [
   'да Марья',
   'Верон',
   'Мирабелла',
@@ -56,7 +56,7 @@ var massSurname = [
   'Ирвинг'
 ];
 
-var massCoatColor = [
+var coatColors = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
   'rgb(146, 100, 161)',
@@ -65,7 +65,7 @@ var massCoatColor = [
   'rgb(0, 0, 0)'
 ];
 
-var massEyesColor = [
+var eyesColors = [
   'black',
   'red',
   'blue',
@@ -75,24 +75,24 @@ var massEyesColor = [
 
 
 var massPers = [{
-  name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
-  coatColor: randomGenerate(massCoatColor),
-  eyesColor: randomGenerate(massEyesColor),
+  name: randomGenerate(names) + ' ' + randomGenerate(surnames),
+  coatColor: randomGenerate(coatColors),
+  eyesColor: randomGenerate(eyesColors),
 },
 {
-  name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
-  coatColor: randomGenerate(massCoatColor),
-  eyesColor: randomGenerate(massEyesColor),
+  name: randomGenerate(names) + ' ' + randomGenerate(surnames),
+  coatColor: randomGenerate(coatColors),
+  eyesColor: randomGenerate(eyesColors),
 },
 {
-  name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
-  coatColor: randomGenerate(massCoatColor),
-  eyesColor: randomGenerate(massEyesColor),
+  name: randomGenerate(names) + ' ' + randomGenerate(surnames),
+  coatColor: randomGenerate(coatColors),
+  eyesColor: randomGenerate(eyesColors),
 },
 {
-  name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
-  coatColor: randomGenerate(massCoatColor),
-  eyesColor: randomGenerate(massEyesColor),
+  name: randomGenerate(names) + ' ' + randomGenerate(surnames),
+  coatColor: randomGenerate(coatColors),
+  eyesColor: randomGenerate(eyesColors),
 }
 ];
 

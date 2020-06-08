@@ -32,7 +32,7 @@ var addElement = function (mass) {
     fragment.appendChild(createPersElem(mass[i]));
   }
   similarListElement.appendChild(fragment);
-}
+};
 
 var massName = [
   'Иван',
@@ -75,25 +75,25 @@ var massEyesColor = [
 
 
 var massPers = [{
-    name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
-    coatColor: randomGenerate(massCoatColor),
-    eyesColor: randomGenerate(massEyesColor),
-  },
-  {
-    name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
-    coatColor: randomGenerate(massCoatColor),
-    eyesColor: randomGenerate(massEyesColor),
-  },
-  {
-    name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
-    coatColor: randomGenerate(massCoatColor),
-    eyesColor: randomGenerate(massEyesColor),
-  },
-  {
-    name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
-    coatColor: randomGenerate(massCoatColor),
-    eyesColor: randomGenerate(massEyesColor),
-  }
+  name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
+  coatColor: randomGenerate(massCoatColor),
+  eyesColor: randomGenerate(massEyesColor),
+},
+{
+  name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
+  coatColor: randomGenerate(massCoatColor),
+  eyesColor: randomGenerate(massEyesColor),
+},
+{
+  name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
+  coatColor: randomGenerate(massCoatColor),
+  eyesColor: randomGenerate(massEyesColor),
+},
+{
+  name: randomGenerate(massName) + ' ' + randomGenerate(massSurname),
+  coatColor: randomGenerate(massCoatColor),
+  eyesColor: randomGenerate(massEyesColor),
+}
 ];
 
 addElement(massPers);

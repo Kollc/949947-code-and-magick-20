@@ -1,7 +1,14 @@
 'use strict';
 
 var setup = document.querySelector('.setup');
-setup.classList.remove('hidden');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+var userName = document.querySelector('.setup-user-name');
+
+var coutColorTrigger = document.querySelector('.setup-wizard .wizard-coat');
+var eyesColorTrigger = document.querySelector('.setup-wizard .wizard-eyes');
+var fireballTrigger = document.querySelector('.setup-fireball-wrap');
+
 document.querySelector('.setup-similar').classList.remove('hidden');
 var template = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var similarListElement = setup.querySelector('.setup-similar-list');
@@ -73,6 +80,14 @@ var eyesColors = [
   'green'
 ];
 
+var fireballColors = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
+
 
 var massPers = [{
   name: randomGenerate(names) + ' ' + randomGenerate(surnames),
@@ -95,5 +110,87 @@ var massPers = [{
   eyesColor: randomGenerate(eyesColors),
 }
 ];
+
+// функция закрытия попапа по нажатии клавиши escape
+var onPopupEscPress = function (evt) {
+  if (evt.key === 'Escape') {
+    evt.preventDefault();
+    closePopup();
+  }
+};
+
+// функция открытия попаба
+var openPopup = function () {
+  setup.classList.remove('hidden');
+
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+// функция закрытия попаба
+var closePopup = function () {
+  setup.classList.add('hidden');
+
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter') {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter') {
+    closePopup();
+  }
+});
+
+// удаляет действие разрешающее закрыть попаб на esc , если input для ввода имени в фокусе
+userName.addEventListener('focus', function () {
+  document.removeEventListener('keydown', onPopupEscPress);
+});
+
+// добавляет действие разрешающие закрыть попаб на esc , если с input был снят фокус
+userName.addEventListener('blur', function () {
+  document.addEventListener('keydown', onPopupEscPress);
+});
+
+// дейсвтие смены цвета мантии
+coutColorTrigger.addEventListener('click', function () {
+  coutColorTrigger.style.fill = randomGenerate(coatColors);
+  document.querySelector('input[name="coat-color"]').value = randomGenerate(coatColors);// изменяем значения input для отправки на сервер
+});
+
+// дейсвтие смены цвета глаз
+eyesColorTrigger.addEventListener('click', function () {
+  eyesColorTrigger.style.fill = randomGenerate(eyesColors);
+  document.querySelector('input[name="eyes-color"]').value = randomGenerate(eyesColors);// изменяем значения input для отправки на сервер
+});
+
+// дейсвтие смены цвета фаербола
+fireballTrigger.addEventListener('click', function () {
+  fireballTrigger.style.backgroundColor = randomGenerate(fireballColors);
+  document.querySelector('input[name="fireball-color"]').value = randomGenerate(fireballColors);// изменяем значения input для отправки на сервер
+});
+
+// валидация
+userName.addEventListener('input', function () {
+  var valueLenght = userName.value.length;
+  if (valueLenght < 2) {
+    userName.setCustomValidity('Еще ' + (2 - valueLenght) + ' символов');
+  } else if (valueLenght > 25) {
+    userName.setCustomValidity('Удалите лишние ' + (valueLenght - 25) + ' символов');
+  } else {
+    userName.setCustomValidity('');
+  }
+});
 
 addElement(massPers);

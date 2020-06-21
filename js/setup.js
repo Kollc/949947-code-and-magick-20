@@ -1,5 +1,8 @@
 'use strict';
 
+var MAX_SIMBOLS = 25;
+var MIN_SIMBOLS = 2;
+
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
@@ -184,10 +187,10 @@ fireballTrigger.addEventListener('click', function () {
 // валидация
 userName.addEventListener('input', function () {
   var valueLenght = userName.value.length;
-  if (valueLenght < 2) {
-    userName.setCustomValidity('Еще ' + (2 - valueLenght) + ' символов');
-  } else if (valueLenght > 25) {
-    userName.setCustomValidity('Удалите лишние ' + (valueLenght - 25) + ' символов');
+  if (valueLenght < MIN_SIMBOLS) {
+    userName.setCustomValidity('Еще ' + (MIN_SIMBOLS - valueLenght) + ' символов');
+  } else if (valueLenght > MAX_SIMBOLS) {
+    userName.setCustomValidity('Удалите лишние ' + (valueLenght - MAX_SIMBOLS) + ' символов');
   } else {
     userName.setCustomValidity('');
   }

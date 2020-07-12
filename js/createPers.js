@@ -6,47 +6,28 @@
   var template = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
   var similarListElement = setup.querySelector('.setup-similar-list');
   var fragment = document.createDocumentFragment();
+  var MAX_SIMILAR_WIZARD_COUNT = 4;
 
   // создание элемента
-  var createPersElem = function (mass) {
-    var elementPers = template.cloneNode(true);
+  var renderWizard = function (wizard) {
+    var wizardElement = template.cloneNode(true);
 
-    elementPers.querySelector('.setup-similar-label').textContent = mass.name;
-    elementPers.querySelector('.wizard-coat').style.fill = mass.coatColor;
-    elementPers.querySelector('.wizard-eyes').style.fill = mass.eyesColor;
+    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
-    return elementPers;
+    return wizardElement;
   };
 
-  // функция добавления элементов на страницу
-  var addElement = function (mass) {
-    for (var i = 0; i < mass.length; i++) {
-      fragment.appendChild(createPersElem(mass[i]));
+  // загружаем магов
+  window.load(function (wizards) {
+    var wizardsCurrent = window.randomGenerateSomeElement(wizards);
+
+    for (var i = 0; i < MAX_SIMILAR_WIZARD_COUNT; i++) {
+      fragment.appendChild(renderWizard(wizardsCurrent[i]));
     }
     similarListElement.appendChild(fragment);
-  };
 
-  var massPers = [{
-    name: window.randomGenerate(window.data.names) + ' ' + window.randomGenerate(window.data.surnames),
-    coatColor: window.randomGenerate(window.data.coatColors),
-    eyesColor: window.randomGenerate(window.data.eyesColors),
-  },
-  {
-    name: window.randomGenerate(window.data.names) + ' ' + window.randomGenerate(window.data.surnames),
-    coatColor: window.randomGenerate(window.data.coatColors),
-    eyesColor: window.randomGenerate(window.data.eyesColors),
-  },
-  {
-    name: window.randomGenerate(window.data.names) + ' ' + window.randomGenerate(window.data.surnames),
-    coatColor: window.randomGenerate(window.data.coatColors),
-    eyesColor: window.randomGenerate(window.data.eyesColors),
-  },
-  {
-    name: window.randomGenerate(window.data.names) + ' ' + window.randomGenerate(window.data.surnames),
-    coatColor: window.randomGenerate(window.data.coatColors),
-    eyesColor: window.randomGenerate(window.data.eyesColors),
-  }
-  ];
-
-  addElement(massPers);
+    setup.querySelector('.setup-similar').classList.remove('hidden');
+  }, window.getError);
 })();

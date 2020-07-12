@@ -1,9 +1,13 @@
 'use strict';
 
 (function () {
+  var form = document.querySelector('.setup-wizard-form');
   var coutColorTrigger = document.querySelector('.setup-wizard .wizard-coat');
   var eyesColorTrigger = document.querySelector('.setup-wizard .wizard-eyes');
   var fireballTrigger = document.querySelector('.setup-fireball-wrap');
+  var setup = document.querySelector('.setup');
+
+  setup.querySelector('.setup-similar').classList.remove('hidden');
 
   document.querySelector('.setup-similar').classList.remove('hidden');
 
@@ -24,5 +28,16 @@
     fireballTrigger.style.backgroundColor = window.randomGenerate(window.data.fireballColors);
     document.querySelector('input[name="fireball-color"]').value = window.randomGenerate(window.data.fireballColors); // изменяем значения input для отправки на сервер
   });
+
+  // callback для отправки формы
+  var submitHandler = function (evt) {
+    evt.preventDefault();
+
+    window.save(new FormData(form), function () {
+      setup.classList.add('hidden'); // закрываем popup
+    }, window.getError);
+  };
+
+  form.addEventListener('submit', submitHandler);
 
 })();

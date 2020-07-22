@@ -70,7 +70,7 @@
     }
 
     return rank;
-  }
+  };
 
   // сортируем и обновляем магов на похожих
   var updateWizards = function () {
@@ -82,7 +82,7 @@
 
       return rankDiff;
     }));
-  }
+  };
 
   // обновляем магов на похожишь, сразу после прихода данных с сервера
   var successHandler = function (data) {
@@ -90,7 +90,7 @@
     updateWizards();
   };
 
-  window.load(successHandler, getError);
+  window.load(successHandler, window.getError);
 
   form.addEventListener('submit', submitHandler);
 
